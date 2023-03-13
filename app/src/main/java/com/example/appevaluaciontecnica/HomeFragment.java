@@ -9,11 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.appevaluaciontecnica.databinding.FragmentSecondBinding;
+import com.example.appevaluaciontecnica.databinding.FragmentHomeBinding;
+import com.google.android.material.snackbar.Snackbar;
 
-public class SecondFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private FragmentHomeBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +22,17 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+
+        //setSupportActionBar(binding.toolbar);
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         return binding.getRoot();
 
     }
@@ -32,7 +43,7 @@ public class SecondFragment extends Fragment {
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
+                NavHostFragment.findNavController(HomeFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });
