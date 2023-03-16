@@ -24,7 +24,6 @@
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/fragment_account" />
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

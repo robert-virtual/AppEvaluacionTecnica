@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appevaluaciontecnica.R;
 import com.example.appevaluaciontecnica.dataaccess.BankApiClient;
 import com.example.appevaluaciontecnica.dataaccess.BasicResponse;
 import com.example.appevaluaciontecnica.dataaccess.account.model.Account;
@@ -66,7 +68,7 @@ public class HomeFragment extends Fragment {
                         recyclerView.setAdapter(
                                 new AccountRecyclerViewAdapter(
                                         accounts,
-                                       HomeFragment.this
+                                        HomeFragment.this
                                 )
                         );
                     }
@@ -79,7 +81,7 @@ public class HomeFragment extends Fragment {
                 });
 
         binding.fab.setOnClickListener(view1 -> {
-
+            Navigation.findNavController(view).navigate(R.id.action_HomeFragment_to_bottomSheetFragment);
         });
     }
 

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.SavingAccountCreditFragment">
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:orientation="vertical"
+       android:layout_height="match_parent">
+       <com.google.android.material.textfield.TextInputLayout
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:hint="Source Account"
+           app:startIconDrawable="@drawable/baseline_savings_24">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:id="@+id/source_account"
+               android:layout_height="wrap_content"
+               android:maxLength="16"
+               android:inputType="number" />
+       </com.google.android.material.textfield.TextInputLayout>
+       <com.google.android.material.textfield.TextInputLayout
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:hint="Notes"
+           app:startIconDrawable="@drawable/baseline_info_24">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:id="@+id/notes"
+               android:layout_height="wrap_content"
+               android:inputType="textMultiLine" />
+       </com.google.android.material.textfield.TextInputLayout>
+       <com.google.android.material.textfield.TextInputLayout
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:hint="Beneficiary DNI"
+           app:startIconDrawable="@drawable/baseline_person_24">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:id="@+id/dni"
+               android:inputType="number"
+               android:maxLength="13"
+               android:layout_height="wrap_content"
+               />
+       </com.google.android.material.textfield.TextInputLayout>
+       <com.google.android.material.textfield.TextInputLayout
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:hint="Target Account"
+           app:startIconDrawable="@drawable/baseline_savings_24">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:id="@+id/target_account"
+               android:inputType="number"
+               android:maxLength="16"
+               android:layout_height="wrap_content"
+                />
+       </com.google.android.material.textfield.TextInputLayout>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_margin="10dp"
+           android:id="@+id/account_holder"
+           android:text="Account Holder"
+           android:visibility="invisible"
+           android:textSize="20dp"
+           android:layout_height="wrap_content"/>
+       <com.google.android.material.textfield.TextInputLayout
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:hint="Amount"
+           app:startIconDrawable="@drawable/baseline_attach_money_24">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:id="@+id/amount"
+               android:inputType="numberDecimal"
+               android:layout_height="wrap_content"
+               />
+       </com.google.android.material.textfield.TextInputLayout>
+       <Button
+           android:layout_width="match_parent"
+           android:text="Next"
+           android:id="@+id/next_button"
+           android:layout_gravity="center"
+           android:layout_marginTop="50dp"
+           android:layout_marginHorizontal="10dp"
+           android:enabled="false"
+           android:layout_height="wrap_content"/>
+   </LinearLayout>
+</ScrollView>

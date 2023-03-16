@@ -10,6 +10,7 @@ public class Account {
 
     private long account_number;
     private String held_balance;
+    private String customer_id;
     private AccountType accountType;
     private AccountStatus accountStatus;
 
@@ -53,5 +54,13 @@ public class Account {
 
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public String getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(String customer_id) {
+        this.customer_id = customer_id;
     }
 }
