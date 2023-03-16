@@ -1,4 +1,7 @@
-package com.example.appevaluaciontecnica.dataaccess.customer.model;
+package com.example.appevaluaciontecnica.dataaccess.account.model;
+
+import com.example.appevaluaciontecnica.dataaccess.customer.model.AccountStatus;
+import com.example.appevaluaciontecnica.dataaccess.customer.model.AccountType;
 
 public class Account {
     public Account(AccountType accountType) {

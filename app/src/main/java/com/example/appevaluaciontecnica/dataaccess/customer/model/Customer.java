@@ -1,8 +1,8 @@
 package com.example.appevaluaciontecnica.dataaccess.customer.model;
 
 
+import com.example.appevaluaciontecnica.dataaccess.account.model.Account;
 import com.example.appevaluaciontecnica.dataaccess.auth.model.User;
-import com.example.appevaluaciontecnica.dataaccess.customer.CustomerService;
 
 import java.util.List;
 

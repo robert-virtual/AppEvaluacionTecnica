@@ -1,7 +1,9 @@
 package com.example.appevaluaciontecnica.dataaccess;
 
+import com.example.appevaluaciontecnica.dataaccess.account.AccountService;
 import com.example.appevaluaciontecnica.dataaccess.auth.AuthService;
 import com.example.appevaluaciontecnica.dataaccess.customer.CustomerService;
+import com.example.appevaluaciontecnica.dataaccess.transactions.TransactionService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -24,5 +26,11 @@ public class BankApiClient {
 
     public static CustomerService getCustomerService() {
         return retrofit.create(CustomerService.class);
+    }
+    public static AccountService getAccountService() {
+        return retrofit.create(AccountService.class);
+    }
+    public static TransactionService getTransactionService() {
+        return retrofit.create(TransactionService.class);
     }
 }

@@ -13,23 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 
-import com.example.appevaluaciontecnica.R;
 import com.example.appevaluaciontecnica.dataaccess.BankApiClient;
 import com.example.appevaluaciontecnica.dataaccess.BasicResponse;
 import com.example.appevaluaciontecnica.dataaccess.customer.CustomerService;
-import com.example.appevaluaciontecnica.dataaccess.customer.model.Account;
+import com.example.appevaluaciontecnica.dataaccess.account.model.Account;
 import com.example.appevaluaciontecnica.dataaccess.customer.model.AccountType;
 import com.example.appevaluaciontecnica.dataaccess.customer.model.Customer;
 import com.example.appevaluaciontecnica.databinding.FragmentCreateCustomerBinding;
-import com.example.appevaluaciontecnica.ui.LoginFragment;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
