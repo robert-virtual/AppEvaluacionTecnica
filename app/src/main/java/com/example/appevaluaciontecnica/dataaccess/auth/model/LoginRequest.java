@@ -1,4 +1,4 @@
-package com.example.appevaluaciontecnica.auth.model;
+package com.example.appevaluaciontecnica.dataaccess.auth.model;
 
 
 

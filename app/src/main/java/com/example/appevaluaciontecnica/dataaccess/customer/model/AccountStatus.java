@@ -1,15 +1,14 @@
-package com.example.appevaluaciontecnica.auth.model;
+package com.example.appevaluaciontecnica.dataaccess.customer.model;
 
-
-public class Role {
-    private int id;
+public class AccountStatus {
+    private long id;
     private String name;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

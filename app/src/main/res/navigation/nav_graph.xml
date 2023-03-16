@@ -7,22 +7,49 @@
 
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="com.example.appevaluaciontecnica.LoginFragment"
-        android:label="@string/login_fragment_label"
+        android:name="com.example.appevaluaciontecnica.ui.LoginFragment"
+        android:label="Login"
         tools:layout="@layout/fragment_login">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/action_LoginFragment_to_HomeFragment"
+            app:popUpTo="@id/LoginFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_LoginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_LoginFragment_to_customersFragment"
+            app:popUpTo="@id/LoginFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/customersFragment" />
     </fragment>
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="com.example.appevaluaciontecnica.HomeFragment"
-        android:label="@string/home_fragment_label"
-        tools:layout="@layout/fragment_home">
-
+        android:name="com.example.appevaluaciontecnica.ui.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.appevaluaciontecnica.ui.ForgotPasswordFragment"
+        android:label="forgot password"
+        tools:layout="@layout/fragment_forgot_password">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_forgotPasswordFragment_to_LoginFragment"
             app:destination="@id/LoginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/customersFragment"
+        android:name="com.example.appevaluaciontecnica.ui.customers.CustomersFragment"
+        android:label="Customers"
+        tools:layout="@layout/fragment_customers_list" >
+        <action
+            android:id="@+id/action_customersFragment_to_createCustomerFragment"
+            app:destination="@id/createCustomerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createCustomerFragment"
+        android:name="com.example.appevaluaciontecnica.ui.customers.CreateCustomerFragment"
+        android:label="Create Customer"
+        tools:layout="@layout/fragment_create_customer" />
 </navigation>

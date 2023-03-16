@@ -1,4 +1,4 @@
-package com.example.appevaluaciontecnica;
+package com.example.appevaluaciontecnica.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,8 +43,8 @@ public class HomeFragment extends Fragment {
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(HomeFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+//                NavHostFragment.findNavController(HomeFragment.this)
+//                        .navigate(R.id.);
             }
         });
     }

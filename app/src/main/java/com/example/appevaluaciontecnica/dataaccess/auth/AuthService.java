@@ -1,16 +1,20 @@
-package com.example.appevaluaciontecnica.auth;
+package com.example.appevaluaciontecnica.dataaccess.auth;
 
-import com.example.appevaluaciontecnica.BasicResponse;
-import com.example.appevaluaciontecnica.auth.model.LoginRequest;
-import com.example.appevaluaciontecnica.auth.model.LoginResponse;
+import com.example.appevaluaciontecnica.dataaccess.auth.model.User;
+import com.example.appevaluaciontecnica.dataaccess.BasicResponse;
+import com.example.appevaluaciontecnica.dataaccess.auth.model.LoginRequest;
+import com.example.appevaluaciontecnica.dataaccess.auth.model.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface AuthService {
-    String BANK_API_BASE_URL = "https://fragrant-firefly-2123.fly.dev";
+    @GET("/auth/info")
+    Call<BasicResponse<User>> userInfo(@Header("Authorization") String authorization);
     @POST("/auth/login")
     Call<BasicResponse<LoginResponse>> login(@Body LoginRequest body);
 

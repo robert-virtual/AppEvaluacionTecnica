@@ -1,8 +1,11 @@
-package com.example.appevaluaciontecnica;
+package com.example.appevaluaciontecnica.dataaccess;
 
+
+import androidx.annotation.Nullable;
 
 public class BasicResponse<T> {
-   private T data;
+    @Nullable
+    private T data;
     private int data_count;
     private String error;
 
