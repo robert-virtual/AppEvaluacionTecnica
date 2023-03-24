@@ -49,8 +49,6 @@ public class AccountRecyclerViewAdapter extends RecyclerView.Adapter<AccountRecy
                     );
 
             Navigation.findNavController(view).navigate(action);
-//            NavHostFragment.findNavController(mFragment)
-//                    .navigate(action);
         });
     }
 

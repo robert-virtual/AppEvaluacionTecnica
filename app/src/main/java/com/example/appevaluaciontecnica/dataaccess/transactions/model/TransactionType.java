@@ -1,6 +1,10 @@
 package com.example.appevaluaciontecnica.dataaccess.transactions.model;
 
 public class TransactionType {
+    public TransactionType(long id) {
+        this.id = id;
+    }
+
     private long id;
     private String name;
     private String description;

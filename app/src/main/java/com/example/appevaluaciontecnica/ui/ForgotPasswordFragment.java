@@ -2,65 +2,104 @@ package com.example.appevaluaciontecnica.ui;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.appevaluaciontecnica.R;
+import com.example.appevaluaciontecnica.dataaccess.BankApiClient;
+import com.example.appevaluaciontecnica.dataaccess.BasicResponse;
+import com.example.appevaluaciontecnica.dataaccess.auth.model.ForgotPasswordRequest;
+import com.example.appevaluaciontecnica.dataaccess.auth.model.LoginRequest;
+import com.example.appevaluaciontecnica.dataaccess.auth.model.LoginResponse;
+import com.example.appevaluaciontecnica.databinding.FragmentForgotPasswordBinding;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ForgotPasswordFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ForgotPasswordFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ForgotPasswordFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ForgotPasswordFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ForgotPasswordFragment newInstance(String param1, String param2) {
-        ForgotPasswordFragment fragment = new ForgotPasswordFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private FragmentForgotPasswordBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forgot_password, container, false);
+        binding = FragmentForgotPasswordBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.btnSendOtp.setOnClickListener(view1 -> {
+            BankApiClient.getAuthService().forgotPassword(new ForgotPasswordRequest(Objects.requireNonNull(binding.email.getText()).toString())).enqueue(new Callback<BasicResponse<String>>() {
+                @Override
+                public void onResponse(Call<BasicResponse<String>> call, Response<BasicResponse<String>> response) {
+                    if (response.body() != null && response.body().getData() != null) {
+
+                        binding.title.setText("A Otp was sent to: " + binding.email.getText() + ".\nType the OTP in the field and provide a new password");
+                        // hide
+                        binding.emailTitle.setVisibility(View.GONE);
+                        binding.btnSendOtp.setVisibility(View.GONE);
+                        // show
+                        binding.btnUpdatePassword.setVisibility(View.VISIBLE);
+                        binding.passwordTitle.setVisibility(View.VISIBLE);
+                        binding.confirmPasswordTitle.setVisibility(View.VISIBLE);
+                        binding.otpTitle.setVisibility(View.VISIBLE);
+                        return;
+                    }
+                    Snackbar.make(view,"Ups there was a problem sending the otp", Snackbar.LENGTH_LONG).show();
+
+                }
+                @Override
+                public void onFailure(Call<BasicResponse<String>> call, Throwable t) {
+                    Snackbar.make(view,"Ups there was a problem sending the otp", Snackbar.LENGTH_LONG).show();
+                }
+            });
+        });
+        binding.btnUpdatePassword.setOnClickListener(view1 -> {
+                BankApiClient.getAuthService().updatePassword(
+                        new LoginRequest(
+                                binding.email.getText().toString(),
+                                binding.password.getText().toString(),
+                                binding.otp.getText().toString()
+                        )
+                ).enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(Call<BasicResponse<String>> call, Response<BasicResponse<String>> response) {
+                            if (response.body() != null && response.body().getData() != null){
+                                Snackbar.make(view,"Password updated successfully",Snackbar.LENGTH_LONG).show();
+                                Navigation.findNavController(view).popBackStack();
+                                return;
+                            }
+                            if (response.body() != null && response.body().getError() != null){
+                                Snackbar.make(view,response.body().getError(),Snackbar.LENGTH_LONG).show();
+                                return;
+                            }
+                            Snackbar.make(view,"Ups there was a problem updating your password",Snackbar.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<BasicResponse<String>> call, Throwable t) {
+                        Snackbar.make(view,t.getMessage(),Snackbar.LENGTH_LONG).show();
+                    }
+                });
+        });
     }
 }

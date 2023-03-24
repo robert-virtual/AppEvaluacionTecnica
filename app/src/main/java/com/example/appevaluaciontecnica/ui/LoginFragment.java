@@ -106,7 +106,7 @@ public class LoginFragment extends Fragment {
                         binding.editTextTextEmailAddress.getText().toString(),
                         binding.editTextTextPassword.getText().toString()
                 )
-        ).enqueue(new Callback<BasicResponse<LoginResponse>>() {
+        ).enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<BasicResponse<LoginResponse>> call, Response<BasicResponse<LoginResponse>> response) {
                 // check that the response contains a token

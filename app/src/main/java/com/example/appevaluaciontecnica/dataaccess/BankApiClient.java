@@ -12,8 +12,8 @@ public class BankApiClient {
 
     //            .client(new OkHttpClient.Builder().addInterceptor(Intercepto())
     // http://ec2-18-218-93-62.us-east-2.compute.amazonaws.com
-    //https://fragrant-firefly-2123.fly.dev
-   // http://192.168.0.9:8080
+    // https://fragrant-firefly-2123.fly.dev
+   // http://192.168.199.219:8080
     private static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://ec2-18-218-93-62.us-east-2.compute.amazonaws.com")
             .addConverterFactory(GsonConverterFactory.create())

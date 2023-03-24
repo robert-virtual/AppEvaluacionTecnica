@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,9 +16,8 @@ import com.example.appevaluaciontecnica.R;
 import com.example.appevaluaciontecnica.dataaccess.BankApiClient;
 import com.example.appevaluaciontecnica.dataaccess.BasicResponse;
 import com.example.appevaluaciontecnica.dataaccess.account.model.Account;
-import com.example.appevaluaciontecnica.dataaccess.customer.model.Customer;
 import com.example.appevaluaciontecnica.databinding.FragmentHomeBinding;
-import com.example.appevaluaciontecnica.ui.customers.CustomerRecyclerViewAdapter;
+import com.example.appevaluaciontecnica.ui.Global;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -65,6 +63,7 @@ public class HomeFragment extends Fragment {
                             return;
                         }
                         List<Account> accounts = response.body().getData();
+                        Global.accounts = accounts;
                         recyclerView.setAdapter(
                                 new AccountRecyclerViewAdapter(
                                         accounts,

@@ -1,6 +1,11 @@
 package com.example.appevaluaciontecnica.dataaccess.transactions.model;
 
 public class TransactionDetail {
+    public TransactionDetail(String target_account, String amount) {
+        this.target_account = target_account;
+        this.amount = amount;
+    }
+
     private long id;
     private long transaction_id;
     private String account_holder;

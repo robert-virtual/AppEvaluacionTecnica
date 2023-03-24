@@ -19,9 +19,11 @@ import com.example.appevaluaciontecnica.dataaccess.BasicResponse;
 import com.example.appevaluaciontecnica.dataaccess.account.model.Account;
 import com.example.appevaluaciontecnica.dataaccess.transactions.model.Transaction;
 import com.example.appevaluaciontecnica.databinding.FragmentTransactionsBinding;
+import com.example.appevaluaciontecnica.ui.Global;
 import com.example.appevaluaciontecnica.ui.home.AccountRecyclerViewAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,7 +43,7 @@ public class TransactionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentTransactionsBinding.inflate(inflater,container,false);
+        binding = FragmentTransactionsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -52,24 +54,42 @@ public class TransactionsFragment extends Fragment {
         Context context = binding.getRoot().getContext();
         RecyclerView recyclerView = binding.list;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        if (Global.transactions != null) recyclerView.setAdapter(
+                new TransactionRecyclerViewAdapter(
+                        Global.transactions,
+                        account
+                )
+        );
         BankApiClient.
                 getTransactionService().
                 allTransactions(
                         "Bearer " + getActivity().
                                 getPreferences(Context.MODE_PRIVATE).
                                 getString("token", ""),
-                       account
+                        account
                 ).enqueue(new Callback<>() {
                     @Override
                     public void onResponse(Call<BasicResponse<List<Transaction>>> call, Response<BasicResponse<List<Transaction>>> response) {
 
                         if (response.body() == null) {
 
-                            Snackbar.make(view, "Ups could not get accounts information: " + response.code(), Snackbar.LENGTH_LONG)
+                            Snackbar.make(view, "Ups could not get transactions: " + response.code(), Snackbar.LENGTH_LONG)
                                     .setAction("ok", null).show();
                             return;
                         }
+                        if (response.body().getData() == null) {
+                            Snackbar.make(view, "Ups could not get transactions: " + response.code(), Snackbar.LENGTH_LONG)
+                                    .setAction("ok", null).show();
+                            return;
+                        }
+                        if (response.body().getData().isEmpty()) {
+                            binding.emptyError.setVisibility(View.VISIBLE);
+                            return;
+                        }
                         List<Transaction> transactions = response.body().getData();
+                        Collections.reverse(transactions);
+                        Global.transactions = transactions;
+                        Global.lastTransaction = transactions.get(0);
                         recyclerView.setAdapter(
                                 new TransactionRecyclerViewAdapter(
                                         transactions,

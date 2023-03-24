@@ -4,6 +4,10 @@ import com.example.appevaluaciontecnica.dataaccess.customer.model.AccountStatus;
 import com.example.appevaluaciontecnica.dataaccess.customer.model.AccountType;
 
 public class Account {
+    public Account(long account_number) {
+        this.account_number = account_number;
+    }
+
     public Account(AccountType accountType) {
         this.accountType = accountType;
     }

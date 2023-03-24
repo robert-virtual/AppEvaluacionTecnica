@@ -16,7 +16,7 @@ import retrofit2.http.Path;
 
 public interface TransactionService {
     @POST("/transaction/create")
-    Call<BasicResponse<Customer>> createTransaction(@Header("Authorization") String authorization, @Body Transaction transaction);
+    Call<BasicResponse<Transaction>> createTransaction(@Header("Authorization") String authorization, @Body Transaction transaction);
 
     @GET("/transaction/all/{account}")
     Call<BasicResponse<List<Transaction>>> allTransactions(@Header("Authorization") String authorization, @Path("account") long path);

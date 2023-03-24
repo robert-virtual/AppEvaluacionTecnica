@@ -1,5 +1,6 @@
 package com.example.appevaluaciontecnica.dataaccess.auth;
 
+import com.example.appevaluaciontecnica.dataaccess.auth.model.ForgotPasswordRequest;
 import com.example.appevaluaciontecnica.dataaccess.auth.model.User;
 import com.example.appevaluaciontecnica.dataaccess.BasicResponse;
 import com.example.appevaluaciontecnica.dataaccess.auth.model.LoginRequest;
@@ -22,8 +23,8 @@ public interface AuthService {
     Call<BasicResponse<LoginResponse>> register(@Body LoginRequest body);
 
     @POST("/auth/password")
-    Call<BasicResponse<LoginResponse>> forgotPassword(@Body LoginRequest body);
+    Call<BasicResponse<String>> forgotPassword(@Body ForgotPasswordRequest body);
 
     @PUT("/auth/password")
-    Call<BasicResponse<LoginResponse>> updatePassword(@Body LoginRequest body);
+    Call<BasicResponse<String>> updatePassword(@Body LoginRequest body);
 }

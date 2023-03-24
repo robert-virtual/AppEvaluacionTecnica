@@ -5,10 +5,14 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appevaluaciontecnica.R;
 import com.example.appevaluaciontecnica.dataaccess.transactions.model.Transaction;
 import com.example.appevaluaciontecnica.databinding.FragmentTransactionBinding;
+import com.example.appevaluaciontecnica.ui.Global;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,7 +51,11 @@ public class TransactionRecyclerViewAdapter extends RecyclerView.Adapter<Transac
 
         String status = mValues.get(position).getStatus().getName();
         holder.mStatusView.setText(status);
-        holder.mStatusView.setTextColor(Objects.equals(status, "pending") ? Color.RED : Color.GREEN);
+        holder.mStatusView.setTextColor(
+                Objects.equals(status, "pending")
+                        ? Color.parseColor("#e15241")
+                        : Color.parseColor("#4eaf0a")
+        );
         holder.mAmountView.setText(
                 "Lps. " + mValues
                         .get(position)
@@ -57,7 +65,15 @@ public class TransactionRecyclerViewAdapter extends RecyclerView.Adapter<Transac
                                 transactionDetail -> Double.parseDouble(transactionDetail.getAmount())
                         ).sum()
         );
-        holder.mAmountView.setTextColor(account == mAccount ? Color.RED : Color.GREEN);
+        if (account == mAccount){
+            holder.mAmountView.setTextColor(
+                     Color.parseColor("#e15241")
+        );
+        }
+       holder.mCardView.setOnClickListener(view -> {
+           Global.lastTransaction = mValues.get(position);
+           Navigation.findNavController(view).navigate(R.id.action_transactionsFragment_to_receiptFragment);
+       });
     }
 
     @Override
@@ -67,6 +83,7 @@ public class TransactionRecyclerViewAdapter extends RecyclerView.Adapter<Transac
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mTransactionTypeView;
+        public final CardView mCardView;
         public final TextView mDateView;
         public final TextView mAmountView;
         public final TextView mStatusView;
@@ -78,6 +95,7 @@ public class TransactionRecyclerViewAdapter extends RecyclerView.Adapter<Transac
             mDateView = binding.date;
             mAmountView = binding.amount;
             mStatusView = binding.status;
+            mCardView = binding.card;
         }
 
         @Override

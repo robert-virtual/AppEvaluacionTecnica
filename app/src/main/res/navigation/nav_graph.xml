@@ -43,8 +43,8 @@
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.example.appevaluaciontecnica.ui.ForgotPasswordFragment"
-        android:label="forgot password"
-        tools:layout="@layout/fragment_forgot_password"/>
+        android:label="Update Password"
+        tools:layout="@layout/fragment_forgot_password" />
     <fragment
         android:id="@+id/customersFragment"
         android:name="com.example.appevaluaciontecnica.ui.customers.CustomersFragment"
@@ -67,6 +67,9 @@
         <argument
             android:name="account"
             app:argType="long" />
+        <action
+            android:id="@+id/action_transactionsFragment_to_receiptFragment"
+            app:destination="@id/receiptFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
@@ -91,14 +94,18 @@
     </dialog>
     <fragment
         android:id="@+id/savingAccountCreditFragment"
-        android:name="com.example.appevaluaciontecnica.ui.SavingAccountCreditFragment"
+        android:name="com.example.appevaluaciontecnica.ui.savingaccountcredit.SavingAccountCreditFragment"
         android:label="Savings Account Credit"
-        tools:layout="@layout/fragment_credito_cuenta_ahorro" />
+        tools:layout="@layout/fragment_credito_cuenta_ahorro" >
+        <action
+            android:id="@+id/action_savingAccountCreditFragment_to_receiptFragment"
+            app:destination="@id/receiptFragment" />
+    </fragment>
     <fragment
         android:id="@+id/payrollFragment"
         android:name="com.example.appevaluaciontecnica.ui.PayrollFragment"
         android:label="Payroll"
-        tools:layout="@layout/fragment_pago_planillas" />
+        tools:layout="@layout/fragment_payroll" />
     <fragment
         android:id="@+id/achFragment"
         android:name="com.example.appevaluaciontecnica.ui.AchFragment"
@@ -114,4 +121,19 @@
         android:name="com.example.appevaluaciontecnica.ui.CheckingAccountCreditFragment"
         android:label="Checking Account Credit"
         tools:layout="@layout/fragment_checking_account_credit" />
+    <fragment
+        android:id="@+id/newPasswordFragment"
+        android:name="com.example.appevaluaciontecnica.NewPasswordFragment"
+        android:label="fragment_new_password"
+        tools:layout="@layout/fragment_new_password" />
+    <fragment
+        android:id="@+id/receiptFragment"
+        android:name="com.example.appevaluaciontecnica.ReceiptFragment"
+        android:label="Receipt"
+        tools:layout="@layout/fragment_receipt" />
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.example.appevaluaciontecnica.CreateUserFragment"
+        android:label="fragment_create_user"
+        tools:layout="@layout/fragment_create_user" />
 </navigation>

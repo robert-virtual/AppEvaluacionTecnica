@@ -5,6 +5,20 @@ import com.example.appevaluaciontecnica.dataaccess.account.model.Account;
 import java.util.List;
 
 public class Transaction {
+    public Transaction(
+            Account account,
+            TransactionType transaction_type,
+            String currency,
+            String notes,
+            List<TransactionDetail> details
+    ) {
+        this.account = account;
+        this.transaction_type = transaction_type;
+        this.currency = currency;
+        this.notes = notes;
+        this.details = details;
+    }
+
     private long id;
 
 
