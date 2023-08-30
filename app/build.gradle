@@ -3,6 +3,14 @@ plugins {
     id 'androidx.navigation.safeargs'
 }
 android {
+    signingConfigs {
+        local {
+            keyAlias 'localkey'
+            keyPassword 'localkey'
+            storePassword 'localkey'
+            storeFile file('C:\\Users\\rober\\AndroidStudioProjects\\AppEvaluacionTecnica\\keystore.jks')
+        }
+    }
     namespace 'com.example.appevaluaciontecnica'
     compileSdk 33
     defaultConfig {
@@ -19,7 +27,20 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL_AWS
         }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL_LOCAL
+        }
+        local {
+            applicationIdSuffix ".local"
+            debuggable true
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL_LOCAL
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_9

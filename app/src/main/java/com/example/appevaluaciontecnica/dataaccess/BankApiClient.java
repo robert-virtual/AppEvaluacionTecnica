@@ -1,5 +1,6 @@
 package com.example.appevaluaciontecnica.dataaccess;
 
+import com.example.appevaluaciontecnica.BuildConfig;
 import com.example.appevaluaciontecnica.dataaccess.account.AccountService;
 import com.example.appevaluaciontecnica.dataaccess.auth.AuthService;
 import com.example.appevaluaciontecnica.dataaccess.customer.CustomerService;
@@ -15,9 +16,11 @@ public class BankApiClient {
     // https://fragrant-firefly-2123.fly.dev
    // http://192.168.199.219:8080
     private static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://ec2-18-218-93-62.us-east-2.compute.amazonaws.com")
+            .baseUrl(BuildConfig.API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+
+
 
 
     public static AuthService getAuthService() {
